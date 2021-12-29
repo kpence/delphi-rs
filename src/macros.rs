@@ -1,4 +1,14 @@
 #[macro_export]
+macro_rules! fpc_first_function_address {
+    ($DELPHI_SRC_CODE:literal) => {{
+        use std::iter;
+
+        let delphi_base_address = fpc!($DELPHI_SRC_CODE);
+        delphi_base_address.get_unchecked(delphi_base_address.iter().position(|&x| x == 0x55).unwrap())
+    }};
+}
+
+#[macro_export]
 macro_rules! fpc {
     ($DELPHI_SRC_CODE:literal) => {{
         use std::fs::File;
