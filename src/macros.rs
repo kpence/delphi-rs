@@ -4,7 +4,7 @@ macro_rules! fpc_first_function_address {
         use std::iter;
 
         let delphi_base_address = fpc!($DELPHI_SRC_CODE);
-        delphi_base_address.get_unchecked(delphi_base_address.iter().position(|&x| x == 0x55).unwrap())
+        delphi_base_address.as_ptr().add(delphi_base_address.iter().position(|&x| x == 0x55).unwrap())
     }};
 }
 

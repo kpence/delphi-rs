@@ -2,12 +2,13 @@
 //use std::{error, result};
 use delphi::*;
 use lazy_static::lazy_static;
+use std::sync::Mutex;
 
 #[cfg(test)]
 mod test {
     use super::*;
     lazy_static! {
-        static ref DELPHI_FN_ADDRESS: &'static u8 = unsafe {
+        static ref DELPHI_RETURN1_FN_ADDRESS: usize = unsafe {
             fpc_first_function_address!(
                 br###"
                     unit delphi;
@@ -16,17 +17,14 @@ mod test {
 
                         implementation
 
-                        function WF: Integer;
+                        function ReturnOne: Integer;
                     begin
-                        While true do
-                        begin
-                        end;
-                    WF:= 1
+                        ReturnOne:= 1
                         end;
 
                     end.
                 "###
-            )
+            ) as usize
         };
     }
 
@@ -58,6 +56,6 @@ mod test {
 
     #[test]
     fn test_fpc_first_function_address_value() {
-        assert_eq!(**DELPHI_FN_ADDRESS, 0x55);
+        assert_eq!(unsafe { *(*DELPHI_RETURN1_FN_ADDRESS as *const u8) }, 0x55);
     }
 }
