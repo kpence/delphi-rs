@@ -1,0 +1,15 @@
+[package]
+authors = ["kpence"]
+description = "..."
+documentation = "..."
+homepage = "https://github.com/kpence/delphi-rs"
+keywords = ["delphi", "borland", "register", "function", "trampoline"]
+license = "BSD-2-Clause"
+name = "delphi"
+readme = "README.org"
+repository = "https://github.com/kpence/delphi-rs"
+version = "0.1.0"
+edition = "2021"
+
+[dev-dependencies]
+cmake = "0.1"
