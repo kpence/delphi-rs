@@ -1,5 +1,8 @@
 #![feature(asm)]
 
+#[macro_use]
+mod macros;
+
 //use std::{error, result};
 
 //type TResult<T> = result::Result<T, TError>;
