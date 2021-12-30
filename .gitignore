@@ -6,6 +6,10 @@
 # having git ignore such leftovers. You can use `.git/info/exclude` to
 # configure your local ignore list.
 
+## Delphi output
+*.o
+*.ppu
+
 ## File system
 .DS_Store
 desktop.ini
