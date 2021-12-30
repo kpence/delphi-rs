@@ -15,12 +15,11 @@ macro_rules! fpc {
         use std::process::Command;
         use std::io::prelude::*;
 
-        let delphi_src_dir: &str = "/tmp/delphi.pp";
-        File::create(delphi_src_dir).unwrap()
+        File::create("/tmp/delphi.pp").unwrap()
             .write_all($DELPHI_SRC_CODE).unwrap();
-        Command::new("fpc").args(&["-s",delphi_src_dir])
+        Command::new("fpc").args(&["/tmp/delphi.pp"])
             .current_dir("/tmp")
-            .status().unwrap();
+            .spawn().unwrap();
         include_bytes!("/tmp/delphi.o")
     }};
 }
